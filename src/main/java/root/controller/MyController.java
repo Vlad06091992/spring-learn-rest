@@ -40,23 +40,4 @@ public class MyController {
         }
         return employee;
     }
-
-    @ExceptionHandler
-    //работа с NoSuchEmployeeException
-    public ResponseEntity<EmployeeIncorrectData> handleException(NoSuchEmployeeException exception){
-        EmployeeIncorrectData data = new EmployeeIncorrectData();
-        data.setInfo(exception.getMessage());
-
-        return new ResponseEntity<>(data, HttpStatus.NOT_FOUND);
-    }
-
-
-    @ExceptionHandler
-    //общий Exception
-    public ResponseEntity<EmployeeIncorrectData> handleException(Exception exception){
-        EmployeeIncorrectData data = new EmployeeIncorrectData();
-        data.setInfo(exception.getMessage());
-
-        return new ResponseEntity<>(data, HttpStatus.BAD_REQUEST);
-    }
 }
