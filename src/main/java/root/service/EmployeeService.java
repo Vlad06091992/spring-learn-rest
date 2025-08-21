@@ -26,7 +26,7 @@ public class EmployeeService implements EmployeeServiceInterface {
     @Override
     @Transactional
     public void saveEmployee(Employee employee) {
-        
+        System.out.println(employee);
         this.employeeDao.saveEmployee(employee);
     }
 

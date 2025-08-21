@@ -30,12 +30,12 @@ public class EmployeeDao implements EmployeeDaoInterface {
     @Override
     public void saveEmployee(Employee employee) {
         Session session = sessionFactory.getCurrentSession();
-        if (!employee.getId().equals("")){
-            session.update(employee);
-        } else {
-            session.save(employee);
-        }
 
+        if (employee.getId() == null) {
+            session.save(employee);
+        } else {
+            session.update(employee);
+        }
     }
 
     @Override

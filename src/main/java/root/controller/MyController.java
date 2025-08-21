@@ -1,11 +1,8 @@
 package root.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import root.entity.Employee;
-import root.exception_handling.EmployeeIncorrectData;
 import root.exception_handling.NoSuchEmployeeException;
 import root.service.EmployeeServiceInterface;
 
@@ -30,7 +27,7 @@ public class MyController {
 
 
         if("2".equals(empId)){
-            //какой exception - NoSuchEmployeeException
+            //какой exception - Exception
             throw new Exception("employee with this id not found");
         }
 
@@ -38,6 +35,13 @@ public class MyController {
             //какой exception - NoSuchEmployeeException
             throw new NoSuchEmployeeException("employee with this id not found");
         }
+        return employee;
+    }
+
+    @PostMapping("/employees")
+    public Employee getAllEmployees(@RequestBody Employee employee){
+        System.out.println(employee);
+        this.employeeService.saveEmployee(employee);
         return employee;
     }
 }
