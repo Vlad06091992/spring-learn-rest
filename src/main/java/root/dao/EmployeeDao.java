@@ -41,17 +41,17 @@ public class EmployeeDao implements EmployeeDaoInterface {
     @Override
     public Employee getEmployeeById(String id) {
         Session session = sessionFactory.getCurrentSession();
-        return session.get(Employee.class,id);
+        return session.get(Employee.class, id);
     }
 
     @Override
-    public void deleteEmployeeById(String id) {
+    public boolean deleteEmployeeById(String id) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("DELETE FROM Employee" +
-                " where id =:employeeId")
-                .setParameter("employeeId",id);
+                        " where id =:employeeId")
+                .setParameter("employeeId", id);
 
-        query.executeUpdate();
-
+        int affected = query.executeUpdate();
+        return affected > 0;
     }
 }

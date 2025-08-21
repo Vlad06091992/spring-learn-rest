@@ -1,6 +1,7 @@
 package root.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import root.entity.Employee;
 import root.exception_handling.NoSuchEmployeeException;
@@ -47,9 +48,21 @@ public class MyController {
 
 
     @PutMapping("/employees/{id}")
-    public Employee getAllEmployees(@RequestBody Employee employee, @PathVariable("id") String empId ){
+    public Employee updateEmployee(@RequestBody Employee employee, @PathVariable("id") String empId ){
         employee.setId(empId);
         this.employeeService.saveEmployee(employee);
         return employee;
+    }
+
+    @DeleteMapping("/employees/{id}")
+    public ResponseEntity<Void> deleteEmployee(@PathVariable("id") String empId) {
+       boolean isDeleted = employeeService.deleteEmployeeById(empId);
+
+       if (isDeleted){
+           return ResponseEntity.noContent().build();
+
+       } else {
+           return ResponseEntity.notFound().build();
+       }
     }
 }

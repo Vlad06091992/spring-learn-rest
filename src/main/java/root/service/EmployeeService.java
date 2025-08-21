@@ -38,8 +38,8 @@ public class EmployeeService implements EmployeeServiceInterface {
 
     @Override
     @Transactional
-    public void deleteEmployeeById(String id) {
-         this.employeeDao.deleteEmployeeById(id);
+    public boolean deleteEmployeeById(String id)  {
+        return this.employeeDao.deleteEmployeeById(id);
     }
 
 
