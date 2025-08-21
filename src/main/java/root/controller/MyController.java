@@ -44,4 +44,12 @@ public class MyController {
         this.employeeService.saveEmployee(employee);
         return employee;
     }
+
+
+    @PutMapping("/employees/{id}")
+    public Employee getAllEmployees(@RequestBody Employee employee, @PathVariable("id") String empId ){
+        employee.setId(empId);
+        this.employeeService.saveEmployee(employee);
+        return employee;
+    }
 }
